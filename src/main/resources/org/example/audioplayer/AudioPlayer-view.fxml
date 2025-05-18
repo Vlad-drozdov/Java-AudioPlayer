@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox fx:id="main_window" prefHeight="600.0" prefWidth="440.0" spacing="0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.audioplayer.MainController">
+
+    <!-- Кастомная заголовочная панель -->
+    <HBox fx:id="titleBar" alignment="CENTER_RIGHT" spacing="5" styleClass="title-bar">
+
+        <HBox alignment="CENTER_LEFT" spacing="8" HBox.hgrow="ALWAYS">
+            <ImageView fx:id="appIcon" fitHeight="20" fitWidth="20" pickOnBounds="true" preserveRatio="true">
+                <HBox.margin>
+                    <Insets left="10" />
+                </HBox.margin>
+            </ImageView>
+            <Label styleClass="title-label" text="AudioPlayer" />
+        </HBox>
+
+
+        <Region fx:id="dragRegion" HBox.hgrow="ALWAYS" />
+
+        <Button fx:id="minimizeBtn" text="─" />
+
+        <Button fx:id="closeBtn" text="✕" />
+
+    </HBox>
+
+    <!-- Основной контент плеера -->
+    <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="347.0" prefWidth="410.0" spacing="10.0" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        </padding>
+      <children>
+         <ImageView fx:id="musicPhoto" fitHeight="260.0" fitWidth="260.0" pickOnBounds="true" styleClass="PhotoShadow" VBox.vgrow="ALWAYS">
+             <clip>
+                 <Rectangle arcHeight="20" arcWidth="20" height="260" styleClass="PhotoShadow" width="260" />
+             </clip>
+            <viewport>
+               <Rectangle2D minX="260.0" minY="260.0" />
+            </viewport>
+            <cursor>
+               <Cursor fx:constant="DEFAULT" />
+            </cursor></ImageView>
+         <Label fx:id="songTitle" alignment="CENTER" prefWidth="260.0" styleClass="songTitle" text="Title" textAlignment="CENTER">
+            <cursor>
+               <Cursor fx:constant="DEFAULT" />
+            </cursor></Label>
+         <HBox alignment="TOP_CENTER" spacing="10.0">
+            <children>
+               <Label fx:id="timeNow" alignment="CENTER" contentDisplay="CENTER" prefWidth="100.0" text="00:00" textAlignment="CENTER" />
+               <VBox alignment="CENTER" prefHeight="17.0">
+                  <children>
+                     <Slider fx:id="slider" prefHeight="16.0" prefWidth="300.0">
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
+                     </Slider>
+                  </children>
+               </VBox>
+               <Label fx:id="timeSize" alignment="CENTER" contentDisplay="CENTER" prefWidth="100.0" text="00:00" textAlignment="CENTER" />
+            </children>
+            <padding>
+               <Insets left="5.0" right="5.0" />
+            </padding>
+            <VBox.margin>
+               <Insets top="20.0" />
+            </VBox.margin>
+         </HBox>
+         <HBox alignment="TOP_CENTER" layoutX="130.0" layoutY="351.0" prefWidth="200.0" spacing="20.0">
+            <children>
+                <Button fx:id="last" onAction="#ClickLast">
+                    <graphic>
+                        <ImageView fx:id="lastSong" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                            <image>
+                                <Image url="@next.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+               <Button fx:id="play" layoutX="10.0" layoutY="10.0" onAction="#ClickPlay">
+                  <graphic>
+                     <ImageView fx:id="playIcon" disable="true" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@play.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+               <Button fx:id="next" layoutX="35.0" layoutY="10.0" onAction="#ClickNext">
+                  <graphic>
+                     <ImageView fx:id="lastSong1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@next.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+            </children>
+         </HBox>
+      </children>
+
+        <!-- Здесь элементы плеера -->
+
+    </VBox>
+
+</VBox>
