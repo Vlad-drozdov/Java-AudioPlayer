@@ -4,6 +4,7 @@ module org.example.audioplayer {
     requires java.desktop;
     requires jaudiotagger;
     requires javafx.media;
+    requires java.sql;
 
 
     opens org.example.audioplayer to javafx.fxml;

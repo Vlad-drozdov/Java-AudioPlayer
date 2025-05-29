@@ -4,10 +4,6 @@
     -fx-border-radius: 10;
 }
 
-#main_window {
-    
-}
-
 .title-label {
     -fx-text-fill: #E0E0E0;
     -fx-font-size: 14;
@@ -89,12 +85,29 @@
     -fx-padding: 6;
 }
 
-#play, #next, #last {
+#play, #next, #last, #random, #repeat, #chooseFiles {
     -fx-background-color: #3C3C3C;
-    
 }
 
-#play:hover, #next:hover, #last:hover {
+#chooseFiles{
+    -fx-font-family: "Inter"; 
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.rect{
+    -fx-background-color: rgba(0, 0, 0, 0.6);
+    -fx-background-radius: 0 0 10 10;
+    -fx-border-radius: 10;
+}
+
+#play:hover, #next:hover, #last:hover, #random:hover, #repeat:hover, #chooseFiles:hover {
     -fx-background-color: #5d5d5d;
-    /* -fx-effect: dropshadow(gaussian, rgb(224, 224, 224), 1, 1, 3, 3); */
+}
+
+.drop-label {
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
 }

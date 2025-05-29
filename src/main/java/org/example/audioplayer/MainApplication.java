@@ -23,7 +23,7 @@ public class MainApplication extends Application {
         scene.setFill(Color.TRANSPARENT);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/org/example/audioplayer/AudioPlayer-style.css")).toExternalForm());
 
-        Image icon = new Image(getClass().getResourceAsStream("/org/example/audioplayer/icon.png"));
+        Image icon = new Image(getClass().getResourceAsStream("/org/example/audioplayer/icons/icon.png"));
         stage.getIcons().add(icon);
 
         stage.setTitle("AudioPlayer");

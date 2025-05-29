@@ -11,22 +11,24 @@ import java.time.Duration;
 
 public class Song {
 
+    private final File file;
     private final Media media;
     private final String title;
     private final String length;
     private final String artist;
     private final Image cover;
+    private long totalSec;
 
     public Song(File mp3) throws Exception {
+        this.file = mp3;
         MP3File file = (MP3File) AudioFileIO.read(mp3);
         this.media = new Media(mp3.toURI().toString());
-
         var tag     = file.getTagOrCreateDefault();
         this.title  = tag.getFirst(FieldKey.TITLE);
         this.artist = tag.getFirst(FieldKey.ARTIST);
 
         int seconds = file.getAudioHeader().getTrackLength();
-        long totalSec = Duration.ofSeconds(seconds).getSeconds();
+        totalSec = Duration.ofSeconds(seconds).getSeconds();
         long min = totalSec / 60;
         long sec = totalSec % 60;
         String time = String.format("%02d:%02d", min, sec);
@@ -37,7 +39,7 @@ public class Song {
         if (art != null && art.getBinaryData() != null) {
             img = new Image(new ByteArrayInputStream(art.getBinaryData()));
         }else {
-            img = new Image(getClass().getResourceAsStream("/org/example/audioplayer/icon.png"));
+            img = new Image(getClass().getResourceAsStream("/org/example/audioplayer/icons/icon.png"));
         }
         this.cover = img;
     }
@@ -47,4 +49,6 @@ public class Song {
     public String getLength() { return length; }
     public Image getCover() { return cover; }
     public Media getMedia() {return media;}
+    public long getTotalSec() {return totalSec;}
+    public File getFile() {return file;}
 }
