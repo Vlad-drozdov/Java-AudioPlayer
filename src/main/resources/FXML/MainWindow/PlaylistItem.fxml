@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.layout.StackPane?>
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="PlaylistItem.PlaylistController"
+      fx:id="playlistObject"
+      onMouseClicked="#ClickOnBlock"
+      onMouseEntered="#CursorEnteredOnBlock"
+      onMouseExited="#CursorExitedFromBlock"
+      alignment="CENTER_LEFT"
+      prefHeight="80"
+      style="-fx-background-radius: 8;">
+    <VBox.margin><Insets left="10.0" right="10.0" /></VBox.margin>
+    <padding><Insets bottom="5" left="5" right="5" top="5" /></padding>
+    <cursor><Cursor fx:constant="HAND" /></cursor>
+    <StackPane>
+        <ImageView fx:id="playlistImg" fitHeight="70" fitWidth="70"><image><Image  url="@../../icons/plate.png" /></image></ImageView>
+        <Button fx:id="playlistPlay" onAction="#PlaylistPlay" onMouseEntered="#CursorEnteredOnPlay" onMouseExited="#CursorExitedFromPlay" visible="false" prefHeight="30" prefWidth="30">
+            <graphic>
+                <ImageView fx:id="btnPlayImg" fitHeight="35" fitWidth="35">
+                    <image>
+                        <Image url="@../../icons/play.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+    </StackPane>
+
+
+    <VBox  alignment="CENTER_LEFT">
+        <padding><Insets left="5.0" /></padding>
+
+        <Label fx:id="playlistTitle" onMouseClicked="#EditPlaylistTitle" text="Title" textFill="WHITE">
+            <font><Font name="System Bold" size="18.0" /></font>
+            <cursor><Cursor fx:constant="TEXT" /></cursor>
+        </Label>
+
+        <TextField fx:id="playlistEditTitle" alignment="CENTER_LEFT" managed="false" maxWidth="200" minWidth="50" visible="false">
+            <font><Font name="System Bold" size="16.0" /></font>
+        </TextField>
+
+        <Label fx:id="playlistCount" text="count" textFill="#9e9d9d">
+            <font><Font name="System Bold Italic" size="14.0" /></font>
+        </Label>
+    </VBox>
+
+    <Region HBox.hgrow="ALWAYS" />
+
+    <HBox alignment="CENTER_RIGHT" maxHeight="30" spacing="10">
+        <padding><Insets right="10.0" /></padding>
+
+
+
+        <Button fx:id="playlistDel" onAction="#PlaylistDel" prefHeight="30" prefWidth="30">
+            <graphic>
+                <ImageView fitHeight="35" fitWidth="35">
+                    <image>
+                        <Image url="@../../icons/trash.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+
+    </HBox>
+</HBox>
+
+

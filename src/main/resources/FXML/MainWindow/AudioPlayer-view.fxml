@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import CustomComponents.VolumeSlider?>
+<?import javafx.scene.control.ScrollPane?>
+
+
+<AnchorPane fx:id="main_window" prefHeight="600.0" prefWidth="440.0"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="MainWindow.MainController">
+    <!-- Титульная панель окна -->
+    <HBox fx:id="titleBar" alignment="CENTER_RIGHT" spacing="5" styleClass="title-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox alignment="CENTER_LEFT" spacing="8" HBox.hgrow="ALWAYS">
+            <ImageView fx:id="appIcon" fitHeight="20" fitWidth="20" pickOnBounds="true" preserveRatio="true">
+                <HBox.margin><Insets left="10" /></HBox.margin>
+            </ImageView>
+            <Label styleClass="title-label" text="AudioPlayer" />
+        </HBox>
+        <Region fx:id="dragRegion" HBox.hgrow="ALWAYS" />
+        <Button fx:id="minimizeBtn" text="─" />
+        <Button fx:id="closeBtn" text="✕" />
+    </HBox>
+
+    <!-- Основная часть UI -->
+    <VBox alignment="TOP_CENTER" prefHeight="347.0" prefWidth="410.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+        <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+        <StackPane fx:id="diskPane" alignment="CENTER" mouseTransparent="true">
+            <!-- Вращающаяся часть пластинки-->
+            <ImageView fx:id="rotatingCover" fitHeight="260" fitWidth="260" mouseTransparent="true" pickOnBounds="true">
+                <clip>
+                    <Circle centerX="130" centerY="130" radius="130" />
+                </clip>
+            </ImageView>
+            <Circle fill="#121212" mouseTransparent="true" radius="24.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+
+            <!-- Центр пластинки -->
+            <ImageView fx:id="centerImage" fitHeight="260.0" fitWidth="260.0" mouseTransparent="true" pickOnBounds="true" />
+        </StackPane>
+
+        <Label fx:id="songTitle" alignment="CENTER" prefWidth="260" styleClass="songTitle" textAlignment="CENTER" />
+
+        <HBox alignment="CENTER" spacing="10">
+            <Label fx:id="timeNow" alignment="CENTER_RIGHT" prefWidth="100" text="00:00" />
+            <Slider fx:id="slider" prefHeight="20" prefWidth="300">
+                <cursor><Cursor fx:constant="HAND" /></cursor>
+                <padding><Insets bottom="0.0" top="0.0" /></padding>
+            </Slider>
+            <Label fx:id="timeSize" prefWidth="100" text="00:00" textAlignment="CENTER" />
+            <VBox.margin><Insets top="10" /></VBox.margin>
+        </HBox>
+        <HBox prefHeight="100.0" prefWidth="310.0" />
+    </VBox>
+
+    <HBox alignment="TOP_CENTER" spacing="20" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="420">
+        <Button fx:id="randomBox" layoutX="340.0" layoutY="10.0" onAction="#ClickRandomBox">
+            <graphic>
+                <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
+                    <image>
+                        <Image url="@../../icons/randomBox.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="random" onAction="#ClickRandom">
+            <graphic><ImageView fx:id="randomIcon" fitHeight="30" fitWidth="30" preserveRatio="true">
+                <image><Image url="@../../icons/notRandom.png" /></image></ImageView></graphic>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="last" onAction="#ClickLast">
+            <graphic><ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
+                <image><Image url="@../../icons/last.png" /></image></ImageView></graphic>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="play" onAction="#ClickPlay">
+            <graphic><ImageView fx:id="playIcon" fitHeight="30" fitWidth="30" preserveRatio="true">
+                <image><Image url="@../../icons/play.png" /></image></ImageView></graphic>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="next" onAction="#ClickNext">
+            <graphic><ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
+                <image><Image url="@../../icons/next.png" /></image></ImageView></graphic>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="repeat" onAction="#ClickRepeat">
+            <graphic><ImageView fx:id="repeatIcon" fitHeight="30" fitWidth="30" preserveRatio="true">
+                <image><Image url="@../../icons/repeat.png" /></image></ImageView></graphic>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="plsOverlayOpen" onAction="#ClickPlaylists">
+            <graphic>
+                <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
+                    <image>
+                        <Image url="@../../icons/playlist.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </HBox>
+
+    <HBox alignment="TOP_CENTER" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="460">
+        <VolumeSlider fx:id="volumeBar" onMouseReleased="#volumeEdit" />
+    </HBox>
+
+    <Button fx:id="chooseFiles" onAction="#chooseFiles" text="Додати" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="45.0">
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor></Button>
+
+    <!-- DnD Overlay -->
+    <StackPane fx:id="dndOverlay" minHeight="570.0" mouseTransparent="true" prefWidth="440.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+        <Region fx:id="dimRect" prefHeight="500.0" prefWidth="440.0" styleClass="rect" />
+        <VBox alignment="TOP_CENTER" maxHeight="200.0" minHeight="200.0" prefHeight="200.0" prefWidth="440.0" spacing="10">
+            <ImageView fx:id="dndIcon" fitHeight="80" fitWidth="80">
+                <image><Image url="@../../icons/plate.png" /></image>
+            </ImageView>
+            <Label styleClass="drop-label" text="Відпустіть, щоб додати файли" />
+        </VBox>
+    </StackPane>
+
+    <StackPane fx:id="plsOverlay" minHeight="570.0" mouseTransparent="true" prefWidth="440.0" translateX="480" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+        <VBox>
+            <HBox alignment="TOP_LEFT" prefHeight="50.0" spacing="15">
+                <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+
+                <Button fx:id="plsExit" onAction="#plsExitClick" prefHeight="30" prefWidth="30" text="❰">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor></Button>
+                <Label prefHeight="30" styleClass="playlistsText" text="Плейлісти" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <HBox alignment="CENTER_RIGHT" maxHeight="30">
+                    <Button fx:id="plsAddPlaylist" onAction="#addPlaylist" prefHeight="30" prefWidth="30" text="✚" />
+                </HBox>
+
+            </HBox>
+            <ScrollPane fx:id="scrollPane" fitToWidth="true">
+                <content>
+                    <VBox fx:id="playlists" spacing="10"></VBox>
+                </content>
+            </ScrollPane>
+
+        </VBox>
+    </StackPane>
+</AnchorPane>

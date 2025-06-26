@@ -1,12 +1,16 @@
-module org.example.audioplayer {
+module AudioPlayer {
     requires javafx.controls;
     requires javafx.fxml;
-    requires java.desktop;
     requires jaudiotagger;
     requires javafx.media;
-    requires java.sql;
+    requires com.github.kwhat.jnativehook;
+    requires java.discord.rpc;
+    requires com.google.gson;
 
-
-    opens org.example.audioplayer to javafx.fxml;
-    exports org.example.audioplayer;
+    exports MainWindow;
+    opens MainWindow to javafx.fxml;
+    exports CustomComponents;
+    opens CustomComponents to javafx.fxml;
+    exports PlaylistItem;
+    opens PlaylistItem to javafx.fxml, com.google.gson;
 }
